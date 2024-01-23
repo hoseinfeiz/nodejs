@@ -7,14 +7,12 @@ const homepageController = async (req, res) => {
     catsArr.push(cat.dataValues.name)
   })
   const posts = await Post.findAll({
-    where: {
-      id: 3,
-    },
+    limit: 2,
   })
-  console.log(posts[0].dataValues.title)
 
   res.render('homepage', {
     catsArr,
+    posts,
   })
 }
 
