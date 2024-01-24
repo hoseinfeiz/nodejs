@@ -1,16 +1,22 @@
 const Category = require('../models/Category')
 const Post = require('../models/Post')
 const homepageController = async (req, res) => {
+  const catid = Number(req.query.catid)
+
   const cats = await Category.findAll()
+  let posts = []
+  catid
+    ? (posts = await Post.findAll({ where: { category_id: catid } }))
+    : (posts = await Post.findAll())
   const catsArr = []
   cats.forEach((cat) => {
     catsArr.push(cat.dataValues)
   })
-  const posts = await Post.findAll({})
 
   res.render('homepage', {
     catsArr,
     posts,
+    catid,
   })
 }
 
