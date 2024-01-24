@@ -4,11 +4,9 @@ const homepageController = async (req, res) => {
   const cats = await Category.findAll()
   const catsArr = []
   cats.forEach((cat) => {
-    catsArr.push(cat.dataValues.name)
+    catsArr.push(cat.dataValues)
   })
-  const posts = await Post.findAll({
-    limit: 2,
-  })
+  const posts = await Post.findAll({})
 
   res.render('homepage', {
     catsArr,
