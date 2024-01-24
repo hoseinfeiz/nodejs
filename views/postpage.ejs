@@ -5,48 +5,42 @@
 
   <body>
 
-    <div class="container">
-      <%- include('styles/header')  %>
-      <%- include('styles/categories')  %>
-
-      <div class="row mb-2">
-        
-          <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-              <div class="card-body d-flex flex-column align-items-start">
-                
-                <strong class="d-inline-block mb-2 text-primary"><% catsArr.forEach(cat => {if(cat.id == post.category_id){ %> <%= cat.name %> <% }}); %></strong>
-                <h3 class="mb-0">
-                  <a class="text-dark" href="/post/<%= post.id  %>"><%= post.title %></a>
-                </h3>
-                <div class="mb-1 text-muted"><%= post.created_at  %></div>
-                <p class="card-text mb-auto"><%= post.description %></p>
-                <a href="#">Continue reading</a>
-              </div>
-              <img style="width: 70px;height: 100px;" class="card-img-right flex-auto d-none d-md-block" src="assets/images/news.jpg" alt="Card image cap">
-            </div>
-          </div>
-       
-        
-        
-      </div>
-    </div>
-
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8 blog-main">
+        <%- include('styles/header')  %>
+        <%- include('styles/categories')  %>
+
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <h3 class="pb-3 mb-4 font-italic border-bottom">
+                    Post Description
+                  </h3>
+                <div class="blog-post">
+                    <div class="card-body d-flex flex-column align-items-start">
+                      
+                      <strong class="d-inline-block mb-2 text-primary"><% catsArr.forEach(cat => {if(cat.id == post.category_id){ %> <%= cat.name %> <% }}); %></strong>
+                      <h3 class="mb-0">
+                        <a class="text-dark" href="/post/<%= post.id  %>"><%= post.title %></a>
+                      </h3>
+                      <div class="mb-1 text-muted"><%= post.created_at  %></div>
+                      <p class="card-text mb-auto"><%= post.description %></p>
+                  
+                    </div>
+                    <img style="width: 70px;height: 100px;" class="card-img-right flex-auto d-none d-md-block" src="/assets/images/news.jpg" alt="Card image cap">
+                  </div>
+    
+                  <nav class="blog-pagination">
+                    <a class="btn btn-outline-primary" href="#">Older</a>
+                    <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+                  </nav>
+    
+            </div>
+             
           
-
-          <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
-          </nav>
-
-        </div><!-- /.blog-main -->
-
-       <%- include('styles/sidebar')  %>
-
-      </div><!-- /.row -->
+                 <%- include('styles/sidebar')  %>
+          
+            
+            
+          </div>
 
     </main><!-- /.container -->
 
