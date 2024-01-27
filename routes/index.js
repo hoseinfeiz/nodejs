@@ -5,6 +5,7 @@ const postController = require('../controllers/postController')
 const router = express.Router()
 
 router.get('/post/:id', postController)
+router.get('/page/:p_number', homepageController)
 router.get('/', homepageController)
 
 module.exports = router
