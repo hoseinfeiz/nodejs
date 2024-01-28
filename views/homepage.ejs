@@ -31,7 +31,7 @@
                 <p class="card-text mb-auto"><%= post.description.substr(0,100)  %></p>
                 <a href="#">Continue reading</a>
               </div>
-              <img style="width: 70px;height: 100px;" class="card-img-right flex-auto d-none d-md-block" src="assets/images/news.jpg" alt="Card image cap">
+              <img style="width: 70px;height: 100px;" class="card-img-right flex-auto d-none d-md-block" src="/assets/images/news.jpg" alt="Card image cap">
             </div>
           </div>
         <% }); %>
@@ -107,11 +107,10 @@
           </div><!-- /.blog-post -->
 
           <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="/page/1<% if(catid){ %>?catid=<%= catid  %><% } %>">1</a>
-            <a class="btn btn-outline-primary" href="#">2</a>
-            <a class="btn btn-outline-primary" href="#">3</a>
-            <a class="btn btn-outline-primary" href="#">4</a>
-            <a class="btn btn-outline-primary" href="#">5</a>
+            <% let numPage = Math.ceil(countPost/10) %>
+            <% for(let item=1;item<=numPage;item++){ %>
+            <a class="btn btn-outline-primary" href="/page/<%= item  %><% if(catid){ %>?catid=<%= catid  %><% } %>"><%= item  %></a>
+           <% } %>
           </nav>
 
         </div><!-- /.blog-main -->

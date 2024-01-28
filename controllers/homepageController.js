@@ -1,12 +1,13 @@
 const Category = require('../models/Category')
 const Post = require('../models/Post')
 const homepageController = async (req, res) => {
+  console.log('paramssssss', req.body.search)
   const catid = Number(req.query.catid)
-  const page = req.params.p_number ? Number(req.params.p_number) : 0
+  const page = req.params.p_number ? Number(req.params.p_number) : 1
   let countPost = 0
   const cats = await Category.findAll()
   let posts = []
-  const offset = page * 10
+  const offset = (page - 1) * 10
   // eslint-disable-next-line no-unused-expressions
   catid
     ? ((posts = await Post.findAll({
@@ -15,13 +16,12 @@ const homepageController = async (req, res) => {
         offset,
       })),
       (countPost = await Post.count({ where: { category_id: catid } })))
-    : ((posts = await Post.findAll()), (countPost = await Post.count()))
+    : ((posts = await Post.findAll({ limit: 10, offset })),
+      (countPost = await Post.count()))
   const catsArr = []
   cats.forEach((cat) => {
     catsArr.push(cat.dataValues)
   })
-
-  console.log(countPost)
 
   res.render('homepage', {
     catsArr,
