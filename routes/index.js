@@ -9,8 +9,8 @@ const router = express.Router()
 router.get('/post/:id', postController)
 router.get('/page/:p_number', homepageController)
 router.get('/search', searchController)
-router.get('/login', signinController)
-router.post('/login', signinController)
+router.get('/login', signinController.get)
+router.post('/login', signinController.post)
 
 router.get('/', homepageController)
 
