@@ -3,7 +3,8 @@ const router = require('./routes')
 const flash = require('connect-flash')
 const cookieparser = require('cookie-parser')
 const session = require('express-session')
-const { handler404, handlerOther } = require('./helpers/errorHandler')
+const errorHandler = require('./helpers/errorHandler')
+const passport = require('passport')
 
 const app = express()
 
@@ -16,16 +17,19 @@ app.use(
     secret: 'keyboard cat',
   })
 )
+
+app.use(passport.authenticate('session'))
 require('./helpers/passport')
+
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded())
 app.set('view engine', 'ejs')
 app.use('/', router)
 
-app.use(handler404)
+app.use(errorHandler.handler404)
 
-app.use(handlerOther)
+app.use(errorHandler.handlerOther)
 
 app.listen(PORT, () => {
   console.log('server is running ...')

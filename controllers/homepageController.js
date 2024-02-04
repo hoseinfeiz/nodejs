@@ -1,7 +1,7 @@
 const Category = require('../models/Category')
 const Post = require('../models/Post')
 const homepageController = async (req, res) => {
-  console.log('paramssssss', req.body.search)
+  // console.log('paramssssss', req.body.search)
   const catid = Number(req.query.catid)
   const page = req.params.p_number ? Number(req.params.p_number) : 1
   let countPost = 0
@@ -28,6 +28,7 @@ const homepageController = async (req, res) => {
     posts,
     catid,
     countPost,
+    user: req.user,
   })
 }
 
