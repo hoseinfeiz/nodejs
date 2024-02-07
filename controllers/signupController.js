@@ -6,8 +6,10 @@ const get = (req, res) => {
 
 const post = async (req, res) => {
   const userId = await User.create({
+    name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    age: 2,
   })
   console.log(userId)
   userId ? res.redirect('/login') : res.render('signup')

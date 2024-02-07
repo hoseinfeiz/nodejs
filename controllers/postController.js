@@ -13,6 +13,7 @@ const postController = async (req, res) => {
   res.render('postpage', {
     post: post.dataValues,
     catsArr,
+    user: req.user,
   })
 }
 
