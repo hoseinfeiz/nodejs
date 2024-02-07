@@ -16,7 +16,10 @@ passport.use(
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' })
         }
-        if (user.password !== password) {
+        const verifyRes = await User.verifyPassword(password, user.password)
+        console.log(verifyRes)
+        if (!verifyRes) {
+          // if (user.password !== password) {
           return done(null, false, { message: 'Incorrect password.' })
         }
         return done(null, user)

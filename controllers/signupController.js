@@ -5,13 +5,15 @@ const get = (req, res) => {
 }
 
 const post = async (req, res) => {
+  const hashedPass = await User.hashPassword(req.body.password)
+
   const userId = await User.create({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
+    password: hashedPass,
     age: 2,
   })
-  console.log(userId)
+
   userId ? res.redirect('/login') : res.render('signup')
 }
 
