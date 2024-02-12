@@ -13,14 +13,12 @@
       />
 
       <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-
-      <input
-        name="name"
-        type="text"
-        id="inputEmail"
-        class="form-control"
-        placeholder="Name"
-      />
+<% errors.forEach(error => { %>
+  <div class="alert alert-danger" role="alert">
+    <%= error.path  %>: <%= error.msg  %>
+  </div>
+  <% }) %>
+      <input name="name" type="text" class="form-control" placeholder="Name" />
       <input
         name="email"
         type="email"
