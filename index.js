@@ -1,3 +1,6 @@
+require('dotenv').config({
+  path: './variables.env',
+})
 const express = require('express')
 const router = require('./routes')
 const flash = require('connect-flash')
@@ -8,13 +11,13 @@ const passport = require('passport')
 
 const app = express()
 
-const PORT = 3000
+const PORT = process.env.PORT
 
 app.use(cookieparser())
 app.use(flash())
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_KEY,
   })
 )
 
