@@ -8,6 +8,7 @@ const signupController = require('../controllers/signupController')
 const dashboardController = require('../controllers/dashboardController')
 const signoutController = require('../controllers/signoutController')
 const { isLoggedin, isNotLoggedin } = require('../helpers/auth')
+const mailController = require('../controllers/mailController')
 
 const router = express.Router()
 
@@ -16,7 +17,7 @@ router.get('/page/:p_number', homepageController)
 router.get('/search', searchController)
 router.get('/dashboard', isLoggedin, dashboardController)
 router.get('/signout', signoutController)
-
+router.get('/email', mailController)
 router.get('/login', isNotLoggedin, signinController.get)
 router.post('/login', isNotLoggedin, signinController.post)
 router.get('/signup', isNotLoggedin, signupController.get)

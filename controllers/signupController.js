@@ -1,3 +1,7 @@
+const sendEmail = require('../configs/sendEmail')
+const ejs = require('ejs')
+const path = require('path')
+
 const User = require('../models/User')
 const { validationResult } = require('express-validator')
 const get = (req, res) => {
@@ -32,6 +36,10 @@ const post = async (req, res) => {
       password: hashedPass,
       age: 2,
     })
+    const html = await ejs.renderFile(
+      path.join(__dirname, '../views/email/auth.ejs')
+    )
+    sendEmail({ html })
     return userId
       ? res.redirect('/login')
       : res.render('signup', { errors: [] })
