@@ -22,7 +22,7 @@ const post = async (req, res) => {
   if (existEmail) {
     err.push({
       type: 'field',
-      value: 'doplicated',
+      value: 'duplicated',
       msg: 'Email exist!, please enter another email',
       path: 'email',
       location: 'body',
@@ -37,9 +37,16 @@ const post = async (req, res) => {
       age: 2,
     })
     const html = await ejs.renderFile(
-      path.join(__dirname, '../views/email/auth.ejs')
+      path.join(__dirname, '../views/email/auth.ejs'),
+      {
+        url: `${process.env.URL}/reset`,
+        title: 'reset password',
+        message: 'please click on button bellow for reset your password',
+      }
     )
-    sendEmail({ html })
+    sendEmail({
+      html,
+    })
     return userId
       ? res.redirect('/login')
       : res.render('signup', { errors: [] })

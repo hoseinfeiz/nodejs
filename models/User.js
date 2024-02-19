@@ -23,6 +23,10 @@ const User = db.define(
     age: {
       type: DataTypes.INTEGER,
     },
+    token: {
+      type: DataTypes.STRING,
+      defaultValue: '-',
+    },
   },
   {
     timestamps: false,
