@@ -11,7 +11,7 @@ const dashboardController = require('../controllers/dashboardController')
 const signoutController = require('../controllers/signoutController')
 const { isLoggedin, isNotLoggedin } = require('../helpers/auth')
 const mailController = require('../controllers/mailController')
-
+const addpostController = require('../controllers/addpostController')
 const router = express.Router()
 
 router.get('/post/:id', postController)
@@ -22,6 +22,8 @@ router.get('/signout', signoutController)
 router.get('/email', mailController)
 router.get('/login', isNotLoggedin, signinController.get)
 router.post('/login', isNotLoggedin, signinController.post)
+router.get('/addpost', isNotLoggedin, addpostController.get)
+router.post('/addpost', isNotLoggedin, addpostController.post)
 router.get('/forget', isNotLoggedin, forgetController.get)
 router.post(
   '/forget',
